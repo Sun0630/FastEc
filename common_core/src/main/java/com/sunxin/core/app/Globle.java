@@ -3,7 +3,6 @@ package com.sunxin.core.app;
 import android.content.Context;
 
 import java.util.HashMap;
-import java.util.WeakHashMap;
 
 /**
  * @author sunxin

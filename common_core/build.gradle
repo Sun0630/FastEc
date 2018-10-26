@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
     compileSdkVersion 28
@@ -40,4 +41,7 @@ dependencies {
     // Fragment 管理
     api 'me.yokeyword:fragmentation:1.3.6'
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
+    // 注解
+    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
 }
