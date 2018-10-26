@@ -18,7 +18,7 @@ public final class Globle {
 
 
 
-    private static HashMap<String,Object> getConfigrations(){
+    public static HashMap<String,Object> getConfigrations(){
         return Configrator.getInsance().getConfigs();
     }
 
