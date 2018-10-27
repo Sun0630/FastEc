@@ -1,10 +1,14 @@
 package com.sunxin.core.net;
 
+import android.content.Context;
+
 import com.sunxin.core.net.callback.IError;
 import com.sunxin.core.net.callback.IFailer;
 import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.net.callback.RequestCallback;
+import com.sunxin.core.ui.CommonLoader;
+import com.sunxin.core.ui.LoaderStyle;
 
 import java.util.WeakHashMap;
 
@@ -33,6 +37,10 @@ public class RestClient {
 
     private final RequestBody BODY;
 
+    private final Context CONTEXT;
+
+    private final LoaderStyle LOADER_STYLE;
+
 
     public RestClient(String url,
                       WeakHashMap<String, Object> params,
@@ -40,7 +48,9 @@ public class RestClient {
                       IError error,
                       IFailer failer,
                       IRequest request,
-                      RequestBody body) {
+                      RequestBody body,
+                      LoaderStyle loaderStyle,
+                      Context context) {
 
         this.URL = url;
         PARAMS.putAll(params);
@@ -49,6 +59,8 @@ public class RestClient {
         this.FAILER = failer;
         this.REQUEST = request;
         this.BODY = body;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loaderStyle;
     }
 
 
@@ -66,18 +78,22 @@ public class RestClient {
             REQUEST.onRequestStart();
         }
 
+        if (LOADER_STYLE != null){
+            CommonLoader.showLoading(CONTEXT,LOADER_STYLE);
+        }
+
         switch (method) {
             case GET:
-                call = restService.get(URL,PARAMS);
+                call = restService.get(URL, PARAMS);
                 break;
             case POST:
-                call = restService.post(URL,PARAMS);
+                call = restService.post(URL, PARAMS);
                 break;
             case PUT:
-                call = restService.put(URL,PARAMS);
+                call = restService.put(URL, PARAMS);
                 break;
             case DELETE:
-                call = restService.delete(URL,PARAMS);
+                call = restService.delete(URL, PARAMS);
                 break;
             default:
                 break;
@@ -92,26 +108,27 @@ public class RestClient {
 
     /**
      * 获取回调
+     *
      * @return
      */
-    public Callback<String> getRequestCallback(){
-        return new RequestCallback(SUCCESS,ERROR,FAILER,REQUEST);
+    public Callback<String> getRequestCallback() {
+        return new RequestCallback(SUCCESS, ERROR, FAILER, REQUEST,LOADER_STYLE);
     }
 
 
-    public final void get(){
+    public final void get() {
         request(HttpMethod.GET);
     }
 
-    public final void post(){
+    public final void post() {
         request(HttpMethod.POST);
     }
 
-    public final void put(){
+    public final void put() {
         request(HttpMethod.PUT);
     }
 
-    public final void delete(){
+    public final void delete() {
         request(HttpMethod.DELETE);
     }
 

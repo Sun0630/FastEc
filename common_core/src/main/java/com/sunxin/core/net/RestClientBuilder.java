@@ -1,9 +1,12 @@
 package com.sunxin.core.net;
 
+import android.content.Context;
+
 import com.sunxin.core.net.callback.IError;
 import com.sunxin.core.net.callback.IFailer;
 import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
+import com.sunxin.core.ui.LoaderStyle;
 
 import java.util.HashMap;
 import java.util.WeakHashMap;
@@ -32,6 +35,10 @@ public class RestClientBuilder {
     private IRequest mRequest;
 
     private RequestBody mBody;
+
+    private LoaderStyle mLoaderStyle;
+
+    private Context mContext;
 
 
     RestClientBuilder() {
@@ -86,9 +93,26 @@ public class RestClientBuilder {
         return this;
     }
 
+    /**
+     * 设置加载动画
+     * @param context
+     * @param loaderStyle
+     * @return
+     */
+    public final RestClientBuilder loader(Context context,LoaderStyle loaderStyle){
+        this.mContext = context;
+        this.mLoaderStyle = loaderStyle;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context){
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallSpinFadeLoaderIndicator;
+        return this;
+    }
 
     public RestClient build(){
-        return new RestClient(mUrl,mParams,mSuccess,mError,mFailer,mRequest,mBody);
+        return new RestClient(mUrl,mParams,mSuccess,mError,mFailer,mRequest,mBody,mLoaderStyle,mContext);
     }
 
 }
