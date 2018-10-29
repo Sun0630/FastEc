@@ -8,6 +8,7 @@ import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.WeakHashMap;
 
@@ -39,6 +40,14 @@ public class RestClientBuilder {
     private LoaderStyle mLoaderStyle;
 
     private Context mContext;
+
+    private File mFile;
+
+    private String name;
+
+    private String extension;
+
+    private String downloadDir;
 
 
     RestClientBuilder() {
@@ -93,6 +102,21 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder dir(String dir){
+        this.downloadDir = dir;
+        return this;
+    }
+
+    public final RestClientBuilder extension(String extension){
+        this.extension = extension;
+        return this;
+    }
+
+    public final RestClientBuilder name(String name){
+        this.name = name;
+        return this;
+    }
+
     /**
      * 设置加载动画
      * @param context
@@ -111,8 +135,26 @@ public class RestClientBuilder {
         return this;
     }
 
+
+    /**
+     * 上传文件
+     * @param file
+     * @return
+     */
+    public final RestClientBuilder file(File file){
+        this.mFile = file;
+        return this;
+    }
+
+
+    public final RestClientBuilder file(String filePath){
+        this.mFile = new File(filePath);
+        return this;
+    }
+
+
     public RestClient build(){
-        return new RestClient(mUrl,mParams,mSuccess,mError,mFailer,mRequest,mBody,mLoaderStyle,mContext);
+        return new RestClient(mUrl,mParams,mSuccess,mError,mFailer,mRequest,mBody,mLoaderStyle,mContext,mFile,name,downloadDir,extension);
     }
 
 }

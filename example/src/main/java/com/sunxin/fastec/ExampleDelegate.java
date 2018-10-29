@@ -2,6 +2,7 @@ package com.sunxin.fastec;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.sunxin.core.delegates.CommonDelegate;
@@ -16,6 +17,8 @@ import com.sunxin.core.net.callback.ISuccess;
  * @desc
  */
 public class ExampleDelegate extends CommonDelegate {
+    public static final String TAG = "Example";
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_example_layout;
@@ -30,12 +33,12 @@ public class ExampleDelegate extends CommonDelegate {
     public void testRetrofitClient() {
         RestClient
                 .builder()
-                .url("https://news.baidu.com")
-                .params("", "")
+                .url("index")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        Log.d(TAG, "onSuccess: " + response);
                     }
                 })
                 .error(new IError() {

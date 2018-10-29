@@ -5,7 +5,8 @@ import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.WeakHashMap;
+
+import okhttp3.Interceptor;
 
 /**
  * @author sunxin
@@ -20,6 +21,11 @@ public class Configrator {
      * 字体图标容器
      */
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+
+    /**
+     * 拦截器容器
+     */
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configrator() {
         CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
@@ -83,7 +89,18 @@ public class Configrator {
         return this;
     }
 
+    public final Configrator withInterceptor(Interceptor interceptor){
+        INTERCEPTORS.add(interceptor);
+        Globle.getConfigrations().put(ConfigType.INTERCEPTORS.name(),INTERCEPTORS);
+        return this;
+    }
 
+
+    public final Configrator withInterceptors(ArrayList<Interceptor> interceptors){
+        INTERCEPTORS.addAll(interceptors);
+        Globle.getConfigrations().put(ConfigType.INTERCEPTORS.name(),INTERCEPTORS);
+        return this;
+    }
 
 
     /**

@@ -7,11 +7,15 @@ import com.sunxin.core.net.callback.IFailer;
 import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.net.callback.RequestCallback;
+import com.sunxin.core.net.download.DownloadHandler;
 import com.sunxin.core.ui.CommonLoader;
 import com.sunxin.core.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +45,15 @@ public class RestClient {
 
     private final LoaderStyle LOADER_STYLE;
 
+    private final File FILE;
+
+    private final String NAME;
+
+    private final String DOWNLOAD_DIR;
+
+    private final String EXTENSION;
+
+
 
     public RestClient(String url,
                       WeakHashMap<String, Object> params,
@@ -50,7 +63,11 @@ public class RestClient {
                       IRequest request,
                       RequestBody body,
                       LoaderStyle loaderStyle,
-                      Context context) {
+                      Context context,
+                      File file,
+                      String name,
+                      String download_dir,
+                      String extension) {
 
         this.URL = url;
         PARAMS.putAll(params);
@@ -61,6 +78,10 @@ public class RestClient {
         this.BODY = body;
         this.CONTEXT = context;
         this.LOADER_STYLE = loaderStyle;
+        this.FILE = file;
+        this.NAME = name;
+        this.DOWNLOAD_DIR = download_dir;
+        this.EXTENSION = extension;
     }
 
 
@@ -89,8 +110,19 @@ public class RestClient {
             case POST:
                 call = restService.post(URL, PARAMS);
                 break;
+            case POST_RAW:
+                call = restService.postRaw(URL,BODY);
+                break;
             case PUT:
                 call = restService.put(URL, PARAMS);
+                break;
+            case PUT_RAW:
+                call = restService.putRaw(URL,BODY);
+                break;
+            case UPLOAD:
+                final RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()),FILE);
+                final MultipartBody.Part body = MultipartBody.Part.createFormData("fiel",FILE.getName(),requestBody);
+                call = restService.upload(URL,body);
                 break;
             case DELETE:
                 call = restService.delete(URL, PARAMS);
@@ -121,15 +153,36 @@ public class RestClient {
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+        if (BODY == null) {
+            request(HttpMethod.POST);
+        }else {
+            if (!PARAMS.isEmpty()){
+                throw new RuntimeException("params must be null");
+            }
+            request(HttpMethod.POST_RAW);
+        }
     }
 
     public final void put() {
-        request(HttpMethod.PUT);
+        if (BODY == null) {
+            request(HttpMethod.PUT);
+
+        }else {
+            if (!PARAMS.isEmpty()){
+                throw new RuntimeException("params must be null");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
     }
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+
+    public final void download(){
+        new DownloadHandler(URL,SUCCESS,ERROR,FAILER,REQUEST,NAME,DOWNLOAD_DIR,EXTENSION)
+                .handleDownload();
     }
 
 }
