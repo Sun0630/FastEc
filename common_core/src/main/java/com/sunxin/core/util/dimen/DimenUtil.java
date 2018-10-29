@@ -1,4 +1,4 @@
-package com.sunxin.core.util;
+package com.sunxin.core.util.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
