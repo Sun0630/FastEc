@@ -1,5 +1,6 @@
 package com.sunxin.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -43,6 +44,15 @@ public class SignUpDelegate extends CommonDelegate {
     @BindView(R2.id.tv_sign_up_link)
     AppCompatTextView mTvSignUpLink;
 
+    private ISignListener mSignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener){
+            mSignListener = (ISignListener) activity;
+        }
+    }
 
     private boolean checkForm() {
         final String name = mEditSignUpName.getText().toString();
@@ -121,12 +131,14 @@ public class SignUpDelegate extends CommonDelegate {
                     .url("http://127.0.0.1/user_profile")
                     .params("name", mEditSignUpName.getText().toString())
                     .params("email", mEditSignUpEmail.getText().toString())
+                    .params("phone",mEditSignUpPhone.getText().toString())
+                    .params("password",mEditSignUpPassword.getText().toString())
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json(TAG, response);
-                            // 持久化到本地
-                            SignHandler.onSignIn(response);
+                            // 持久化到本地，一般注册完就登陆了
+                            SignHandler.onSignUp(response,mSignListener);
                         }
                     })
                     .build()
