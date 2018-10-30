@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
 
+
 android {
     compileSdkVersion 28
 
@@ -60,5 +61,10 @@ dependencies {
     api 'com.bigkoo:ConvenientBanner:2.1.4'
     //Json
     api 'com.alibaba:fastjson:1.1.70.android'
+    //Logger
+    api 'com.orhanobut:logger:2.2.0'
+    // 数据库
+    api 'org.greenrobot:greendao:3.2.2'
+
 
 }

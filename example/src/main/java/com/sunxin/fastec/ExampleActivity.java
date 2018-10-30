@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBar;
 
 import com.sunxin.core.activity.ProxyActivity;
 import com.sunxin.core.delegates.CommonDelegate;
-import com.sunxin.ec.launcher.LauncherDelegate;
+import com.sunxin.ec.sign.SignUpDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -21,6 +21,6 @@ public class ExampleActivity extends ProxyActivity {
 
     @Override
     public CommonDelegate setRootDelegate() {
-        return new LauncherDelegate();
+        return new SignUpDelegate();
     }
 }

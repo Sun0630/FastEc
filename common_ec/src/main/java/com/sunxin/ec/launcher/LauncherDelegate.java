@@ -59,6 +59,7 @@ public class LauncherDelegate extends CommonDelegate implements ITimerListener {
     private void checkIsShowScroll(){
         if (!CommonPreference.getAppFlag(ScrollLauncherTag.IS_FIRST_LAUNCHER_APP.name())){
             start(new LauncherScrollDelegate(),SINGLETASK);
+
         }else {
             // 检查用户是否登陆
         }

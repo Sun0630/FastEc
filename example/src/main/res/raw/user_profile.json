@@ -1,0 +1,11 @@
+{
+  "code":0,
+  "message":"OK",
+  "data":{
+    "userId":1,
+    "name":"sunxin",
+    "avator":"",
+    "gender":"男",
+    "address":"郑州"
+  }
+}

@@ -2,7 +2,6 @@ package com.sunxin.fastec;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 
 import com.sunxin.core.delegates.CommonDelegate;
@@ -10,6 +9,7 @@ import com.sunxin.core.net.RestClient;
 import com.sunxin.core.net.callback.IError;
 import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
+import com.sunxin.core.util.log.LatteLogger;
 
 /**
  * @author sunxin
@@ -38,7 +38,7 @@ public class ExampleDelegate extends CommonDelegate {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Log.d(TAG, "onSuccess: " + response);
+                        LatteLogger.json(TAG, response);
                     }
                 })
                 .error(new IError() {

@@ -2,9 +2,11 @@ package com.sunxin.fastec;
 
 import android.app.Application;
 
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.sunxin.core.app.Globle;
 import com.sunxin.core.net.interceptors.DebugInterceptor;
+import com.sunxin.ec.database.DatabaseManager;
 import com.sunxin.ec.icon.EcFontModule;
 
 /**
@@ -21,7 +23,23 @@ public class MainApplication extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new EcFontModule())
-                .withInterceptor(new DebugInterceptor("index",R.raw.test))
+                .withInterceptor(new DebugInterceptor("user_profile", R.raw.user_profile))
                 .configure();
+
+        // 初始化数据库
+        DatabaseManager.getInstance().init(this);
+
+        //数据库检测工具
+        initStetho();
+    }
+
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .build()
+
+        );
     }
 }
