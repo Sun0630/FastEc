@@ -2,8 +2,8 @@ package com.sunxin.core.net.callback;
 
 import android.os.Handler;
 
-import com.sunxin.core.ui.CommonLoader;
-import com.sunxin.core.ui.LoaderStyle;
+import com.sunxin.core.ui.loader.CommonLoader;
+import com.sunxin.core.ui.loader.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,4 +1,4 @@
-package com.sunxin.core.ui;
+package com.sunxin.core.ui.loader;
 
 /**
  * @author sunxin

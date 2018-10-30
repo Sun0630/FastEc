@@ -3,7 +3,7 @@ package com.sunxin.core.net.rx;
 import android.content.Context;
 
 import com.sunxin.core.net.RestCreator;
-import com.sunxin.core.ui.LoaderStyle;
+import com.sunxin.core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.HashMap;

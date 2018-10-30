@@ -6,7 +6,7 @@ import com.sunxin.core.net.callback.IError;
 import com.sunxin.core.net.callback.IFailer;
 import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
-import com.sunxin.core.ui.LoaderStyle;
+import com.sunxin.core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.HashMap;

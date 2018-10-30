@@ -8,8 +8,8 @@ import com.sunxin.core.net.callback.IRequest;
 import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.net.callback.RequestCallback;
 import com.sunxin.core.net.download.DownloadHandler;
-import com.sunxin.core.ui.CommonLoader;
-import com.sunxin.core.ui.LoaderStyle;
+import com.sunxin.core.ui.loader.CommonLoader;
+import com.sunxin.core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;

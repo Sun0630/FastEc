@@ -6,6 +6,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.sunxin.core.delegates.CommonDelegate;
+import com.sunxin.core.ui.launcher.ScrollLauncherTag;
+import com.sunxin.core.util.storage.CommonPreference;
 import com.sunxin.core.util.timer.BaseTimerTask;
 import com.sunxin.core.util.timer.ITimerListener;
 import com.sunxin.ec.R;
@@ -35,7 +37,11 @@ public class LauncherDelegate extends CommonDelegate implements ITimerListener {
 
     @OnClick(R2.id.tv_launcher_timer)
     public void onViewClicked() {
-
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+            checkIsShowScroll();
+        }
     }
 
     /**
@@ -45,6 +51,17 @@ public class LauncherDelegate extends CommonDelegate implements ITimerListener {
         mTimer = new Timer();
         final BaseTimerTask baseTimerTask = new BaseTimerTask(this);
         mTimer.schedule(baseTimerTask, 0, 1000);
+    }
+
+    /**
+     * 检查是否进入启动页
+     */
+    private void checkIsShowScroll(){
+        if (!CommonPreference.getAppFlag(ScrollLauncherTag.IS_FIRST_LAUNCHER_APP.name())){
+            start(new LauncherScrollDelegate(),SINGLETASK);
+        }else {
+            // 检查用户是否登陆
+        }
     }
 
 
@@ -71,6 +88,7 @@ public class LauncherDelegate extends CommonDelegate implements ITimerListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
+                            checkIsShowScroll();
                         }
                     }
                 }

@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.sunxin.core.net.HttpMethod;
 import com.sunxin.core.net.RestCreator;
-import com.sunxin.core.ui.CommonLoader;
-import com.sunxin.core.ui.LoaderStyle;
+import com.sunxin.core.ui.loader.CommonLoader;
+import com.sunxin.core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;
