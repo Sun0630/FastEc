@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.sunxin.core.activity.ProxyActivity;
+import com.sunxin.core.app.ConfigType;
+import com.sunxin.core.app.Globle;
 import com.sunxin.core.delegates.CommonDelegate;
 import com.sunxin.core.ui.launcher.ILauncherFinishListener;
 import com.sunxin.core.ui.launcher.OnLauncherFinishTag;
@@ -19,6 +21,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final ActionBar actionBar = getSupportActionBar();
+        Globle.getConfigrations().put(ConfigType.ACTIVITY.name(),this);
         if (actionBar != null) {
             actionBar.hide();
         }

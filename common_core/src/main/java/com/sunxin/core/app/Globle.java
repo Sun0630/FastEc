@@ -22,6 +22,10 @@ public final class Globle {
         return Configrator.getInsance().getConfigs();
     }
 
+    public static <T> T getConfigrator(Object key){
+        return Configrator.getInsance().getConfigration(key);
+    }
+
 
     public static Context getApplicationContext(){
         return (Context) getConfigrations().get(ConfigType.APPLICATION_CONTEXT.name());

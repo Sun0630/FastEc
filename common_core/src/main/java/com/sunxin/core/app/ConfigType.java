@@ -10,5 +10,8 @@ public enum ConfigType {
     APPLICATION_CONTEXT,
     CONFIG_READY,
     ICON,
-    INTERCEPTORS
+    INTERCEPTORS,
+    WX_APP_ID,
+    WX_APP_SECRET,
+    ACTIVITY
 }

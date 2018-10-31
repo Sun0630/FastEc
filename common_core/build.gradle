@@ -65,6 +65,7 @@ dependencies {
     api 'com.orhanobut:logger:2.2.0'
     // 数据库
     api 'org.greenrobot:greendao:3.2.2'
-
+    // 微信依赖
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
 }

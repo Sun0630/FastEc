@@ -1,5 +1,7 @@
 package com.sunxin.core.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -105,6 +107,21 @@ public class Configrator {
         return this;
     }
 
+    public final Configrator withWxAppId(String appId){
+        Globle.getConfigrations().put(ConfigType.WX_APP_ID.name(),appId);
+        return this;
+    }
+
+    public final Configrator withWxAppSecret(String appSecret){
+        Globle.getConfigrations().put(ConfigType.WX_APP_SECRET.name(),appSecret);
+        return this;
+    }
+
+    public final Configrator withActivity(Activity activity){
+        Globle.getConfigrations().put(ConfigType.ACTIVITY.name(),activity);
+        return this;
+    }
+
 
     /**
      * 检查配置
@@ -116,9 +133,13 @@ public class Configrator {
         }
     }
 
-    final <T> T getConfigration(Enum<ConfigType> key) {
+    public final <T> T getConfigration(Object key) {
         checkConfigration();
-        return (T) CONFIGS.get(key.name());
+        final Object value = CONFIGS.get(key);
+        if (value == null){
+            throw new RuntimeException(key.toString()+"IS NULL");
+        }
+        return (T) CONFIGS.get(key);
     }
 
 }
