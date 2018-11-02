@@ -15,6 +15,8 @@ import com.sunxin.core.delegates.CommonDelegate;
 import com.sunxin.core.net.RestClient;
 import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.util.log.LatteLogger;
+import com.sunxin.core.wechat.WeChat;
+import com.sunxin.core.wechat.callback.IWeChatSignInSuccess;
 import com.sunxin.ec.R;
 import com.sunxin.ec.R2;
 
@@ -47,11 +49,10 @@ public class SignInDelegate extends CommonDelegate {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof ISignListener){
+        if (activity instanceof ISignListener) {
             mSignListener = (ISignListener) activity;
         }
     }
-
 
 
     private boolean checkForm() {
@@ -61,15 +62,12 @@ public class SignInDelegate extends CommonDelegate {
         boolean isPass = true;
 
 
-
         if (TextUtils.isEmpty(email) || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             mEditSignInEmail.setError("错误的邮箱格式");
             isPass = false;
         } else {
             mEditSignInEmail.setError(null);
         }
-
-
 
 
         if (TextUtils.isEmpty(password) || password.length() < 6) {
@@ -94,18 +92,18 @@ public class SignInDelegate extends CommonDelegate {
 
     @OnClick(R2.id.btn_sign_in)
     public void onViewClickeSignIn() {
-        if (checkForm()){
+        if (checkForm()) {
             RestClient
                     .builder()
                     .url("http://127.0.0.1/user_profile")
                     .params("email", mEditSignInEmail.getText().toString())
-                    .params("password",mEditSignInPassword.getText().toString())
+                    .params("password", mEditSignInPassword.getText().toString())
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json(TAG, response);
                             // 持久化到本地，一般注册完就登陆了
-                            SignHandler.onSignIn(response,mSignListener);
+                            SignHandler.onSignIn(response, mSignListener);
                         }
                     })
                     .build()
@@ -115,11 +113,19 @@ public class SignInDelegate extends CommonDelegate {
 
     @OnClick(R2.id.icon_sign_in_wechat)
     public void onViewClickWechat() {
+        WeChat
+                .getInstance()
+                .onSignInSuccess(new IWeChatSignInSuccess() {
+                    @Override
+                    public void onSignInSuccess(String userInfo) {
 
+                    }
+                })
+                .signIn();
     }
 
     @OnClick(R2.id.tv_sign_in_link)
-    public void onViewClickLinke(){
+    public void onViewClickLinke() {
         start(new SignUpDelegate());
     }
 

@@ -23,6 +23,8 @@ public class MainApplication extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new EcFontModule())
+                .withWxAppId("")
+                .withWxAppSecret("")
                 .withInterceptor(new DebugInterceptor("user_profile", R.raw.user_profile))
                 .configure();
 

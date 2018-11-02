@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.sunxin.core.app.ConfigType;
 import com.sunxin.core.app.Globle;
+import com.sunxin.core.wechat.callback.IWeChatSignInSuccess;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -20,6 +21,8 @@ public class WeChat {
     public final static String APP_SECRET = Globle.getConfigrator(ConfigType.WX_APP_SECRET);
 
     private final IWXAPI mWXAPI;
+
+    private IWeChatSignInSuccess mWeChatSignInSuccess = null;
 
     private WeChat() {
         Activity activity = Globle.getConfigrator(ConfigType.ACTIVITY);
@@ -38,6 +41,16 @@ public class WeChat {
 
     public static WeChat getInstance() {
         return HOLDER.INSTANCE;
+    }
+
+
+    public WeChat onSignInSuccess(IWeChatSignInSuccess signInSuccess) {
+        mWeChatSignInSuccess = signInSuccess;
+        return this;
+    }
+
+    public IWeChatSignInSuccess getSignInCallback() {
+        return mWeChatSignInSuccess;
     }
 
     /**
