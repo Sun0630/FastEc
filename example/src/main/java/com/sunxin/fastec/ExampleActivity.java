@@ -12,6 +12,7 @@ import com.sunxin.core.delegates.CommonDelegate;
 import com.sunxin.core.ui.launcher.ILauncherFinishListener;
 import com.sunxin.core.ui.launcher.OnLauncherFinishTag;
 import com.sunxin.ec.launcher.LauncherDelegate;
+import com.sunxin.ec.main.EcBottomDelegate;
 import com.sunxin.ec.sign.ISignListener;
 import com.sunxin.ec.sign.SignInDelegate;
 
@@ -47,7 +48,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登陆了", Toast.LENGTH_SHORT).show();
-                startWithPop(new ExampleDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没有登陆", Toast.LENGTH_SHORT).show();
