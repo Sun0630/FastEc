@@ -26,13 +26,13 @@ import me.yokeyword.fragmentation.SupportFragment;
 /**
  * @author sunxin
  * @date 2018/11/2 11:07 AM
- * @desc
+ * @desc bottomBar基类
  */
 public abstract class BaseBottomDelegate extends CommonDelegate implements View.OnClickListener {
 
-    private final ArrayList<BaseBottomItemDelegate> ITEMS_DELEGATES = new ArrayList<>();
+    private final ArrayList<BottomItemDelegate> ITEMS_DELEGATES = new ArrayList<>();
     private final ArrayList<BaseTabBean> TAB_BEANS = new ArrayList<>();
-    private final LinkedHashMap<BaseBottomItemDelegate, BaseTabBean> ITEMS = new LinkedHashMap<>();
+    private final LinkedHashMap<BottomItemDelegate, BaseTabBean> ITEMS = new LinkedHashMap<>();
 
 
     @BindView(R2.id.bottom_bar_container)
@@ -71,7 +71,7 @@ public abstract class BaseBottomDelegate extends CommonDelegate implements View.
     @ColorInt
     public abstract int setClickedColor();
 
-    public abstract LinkedHashMap<BaseBottomItemDelegate, BaseTabBean> setItems(ItemBuilder itemBuilder);
+    public abstract LinkedHashMap<BottomItemDelegate, BaseTabBean> setItems(ItemBuilder itemBuilder);
 
 
     @Override
@@ -90,12 +90,12 @@ public abstract class BaseBottomDelegate extends CommonDelegate implements View.
 
         final ItemBuilder itemBuilder = ItemBuilder.builder();
 
-        final LinkedHashMap<BaseBottomItemDelegate, BaseTabBean> items = setItems(itemBuilder);
+        final LinkedHashMap<BottomItemDelegate, BaseTabBean> items = setItems(itemBuilder);
 
         ITEMS.putAll(items);
 
-        for (Map.Entry<BaseBottomItemDelegate, BaseTabBean> entry : ITEMS.entrySet()) {
-            final BaseBottomItemDelegate itemDelegate = entry.getKey();
+        for (Map.Entry<BottomItemDelegate, BaseTabBean> entry : ITEMS.entrySet()) {
+            final BottomItemDelegate itemDelegate = entry.getKey();
             final BaseTabBean tabBean = entry.getValue();
 
             ITEMS_DELEGATES.add(itemDelegate);

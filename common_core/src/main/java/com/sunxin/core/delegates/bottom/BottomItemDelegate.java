@@ -11,7 +11,7 @@ import com.sunxin.core.delegates.CommonDelegate;
  * @date 2018/11/2 11:11 AM
  * @desc
  */
-public abstract class BaseBottomItemDelegate extends CommonDelegate implements View.OnClickListener {
+public abstract class BottomItemDelegate extends CommonDelegate implements View.OnClickListener {
 
     private static final long WAIT_TIME = 2000L;
 
