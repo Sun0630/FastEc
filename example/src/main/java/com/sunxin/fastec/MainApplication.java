@@ -26,6 +26,7 @@ public class MainApplication extends Application {
                 .withWxAppId("")
                 .withWxAppSecret("")
                 .withInterceptor(new DebugInterceptor("user_profile", R.raw.user_profile))
+                .withInterceptor(new DebugInterceptor("index", R.raw.index))
                 .configure();
 
         // 初始化数据库

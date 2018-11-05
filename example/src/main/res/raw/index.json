@@ -1,0 +1,77 @@
+{
+  "code": 0,
+  "message": "OK",
+  "total": 100,
+  "page_size": 6,
+  "data": [
+    {
+      "goodsId": 0,
+      "span_size": 4,
+      "banners": [
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      "goodsId": 1,
+      "text": "测试描述1",
+      "imageUrl": "",
+      "spanSize": 4
+    },
+    {
+      "goodsId": 2,
+      "text": "测试描述2",
+      "imageUrl": "",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 3,
+      "text": "测试描述3",
+      "imageUrl": "",
+      "spanSize": 4
+    },
+    {
+      "goodsId": 4,
+      "imageUrl": "",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 4,
+      "imageUrl": "",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 4,
+      "imageUrl": "",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 4,
+      "imageUrl": "",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 5,
+      "text": "广告位招租",
+      "spanSize": 4
+    },
+    {
+      "goodsId": 5,
+      "text": "测试描述4",
+      "imageUrl": "",
+      "spanSize": 4
+    },
+    {
+      "goodsId": 6,
+      "text": "测试描述5",
+      "imageUrl": "",
+      "spanSize": 4
+    },
+    {
+      "goodsId": 5,
+      "text": "广告位招租",
+      "spanSize": 4
+    }
+  ]
+}

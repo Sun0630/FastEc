@@ -13,5 +13,6 @@ public enum ConfigType {
     INTERCEPTORS,
     WX_APP_ID,
     WX_APP_SECRET,
-    ACTIVITY
+    ACTIVITY,
+    HANDLER
 }

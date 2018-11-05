@@ -67,5 +67,9 @@ dependencies {
     api 'org.greenrobot:greendao:3.2.2'
     // 微信依赖
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-
+    // RecyclerView Adapter
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
+    // 图片
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }

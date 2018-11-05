@@ -12,7 +12,7 @@ public enum EcIcon implements Icon {
     icon_scan('\ue602'),
     icon_ali_pay('\ue606');
 
-    char character;
+    private char character;
 
     EcIcon(char character) {
         this.character = character;

@@ -1,6 +1,7 @@
 package com.sunxin.core.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
 
@@ -30,4 +31,16 @@ public final class Globle {
     public static Context getApplicationContext(){
         return (Context) getConfigrations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
+
+
+    /**
+     * 获取Handler
+     * @return
+     */
+    public static Handler getHandler(){
+        return (Handler) getConfigrations().get(ConfigType.HANDLER.name());
+    }
+
+
+
 }

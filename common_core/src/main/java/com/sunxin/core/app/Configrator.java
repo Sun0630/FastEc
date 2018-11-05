@@ -1,6 +1,7 @@
 package com.sunxin.core.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -31,8 +32,11 @@ public class Configrator {
      */
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
+    private static final Handler HANDLER = new Handler();
+
     private Configrator() {
         CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+        CONFIGS.put(ConfigType.HANDLER.name(),HANDLER);
     }
 
     final HashMap<String, Object> getConfigs() {

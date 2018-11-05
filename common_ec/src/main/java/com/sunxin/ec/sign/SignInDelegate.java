@@ -28,7 +28,7 @@ import static com.sunxin.ec.sign.SignUpDelegate.TAG;
 /**
  * @author sunxin
  * @date 2018/10/30 11:24 AM
- * @desc 注册
+ * @desc 登陆
  */
 public class SignInDelegate extends CommonDelegate {
 
