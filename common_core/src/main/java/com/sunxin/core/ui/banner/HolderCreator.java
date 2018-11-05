@@ -20,6 +20,6 @@ public class HolderCreator implements CBViewHolderCreator {
 
     @Override
     public int getLayoutId() {
-        return R.layout.item_image;
+        return R.layout.item_banner;
     }
 }

@@ -6,49 +6,49 @@
   "data": [
     {
       "goodsId": 0,
-      "span_size": 4,
+      "spanSize": 4,
       "banners": [
-        "",
-        "",
-        ""
+        "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/8327/30/6103/77619/5be0296cEcaa4e8ba/971d0e85910683e5.jpg!q70.dpg",
+        "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/3970/23/14548/94358/5bdba45dE7e40921a/6cbebbf6c99fe779.jpg!q70.dpg",
+        "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/3970/23/14548/94358/5bdba45dE7e40921a/6cbebbf6c99fe779.jpg!q70.dpg"
       ]
     },
     {
       "goodsId": 1,
       "text": "测试描述1",
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/mobilecms/s750x750_jfs/t1/5968/9/15709/318330/5bdfbfb7E5da8c233/88c66395d1a6da22.jpg!q80.dpg.webp",
       "spanSize": 4
     },
     {
       "goodsId": 2,
       "text": "测试描述2",
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/mobilecms/s750x750_jfs/t1/5968/9/15709/318330/5bdfbfb7E5da8c233/88c66395d1a6da22.jpg!q80.dpg.webp",
       "spanSize": 2
     },
     {
       "goodsId": 3,
       "text": "测试描述3",
-      "imageUrl": "",
-      "spanSize": 4
-    },
-    {
-      "goodsId": 4,
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/mobilecms/s750x750_jfs/t1/5968/9/15709/318330/5bdfbfb7E5da8c233/88c66395d1a6da22.jpg!q80.dpg.webp",
       "spanSize": 2
     },
     {
       "goodsId": 4,
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/3970/23/14548/94358/5bdba45dE7e40921a/6cbebbf6c99fe779.jpg!q70.dpg",
       "spanSize": 2
     },
     {
       "goodsId": 4,
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/3970/23/14548/94358/5bdba45dE7e40921a/6cbebbf6c99fe779.jpg!q70.dpg",
       "spanSize": 2
     },
     {
       "goodsId": 4,
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/6962/37/4357/98836/5bd941b7Ee07ef1c4/0adeea32edecd3ac.jpg!q70.dpg",
+      "spanSize": 2
+    },
+    {
+      "goodsId": 4,
+      "imageUrl": "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/6962/37/4357/98836/5bd941b7Ee07ef1c4/0adeea32edecd3ac.jpg!q70.dpg",
       "spanSize": 2
     },
     {
@@ -59,13 +59,13 @@
     {
       "goodsId": 5,
       "text": "测试描述4",
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/6117/30/5194/79866/5bdc13dfEe85772cb/a05b012a84b0a369.jpg!q70.dpg",
       "spanSize": 4
     },
     {
       "goodsId": 6,
       "text": "测试描述5",
-      "imageUrl": "",
+      "imageUrl": "https://m.360buyimg.com/babel/s3339x1335_jfs/t1/6117/30/5194/79866/5bdc13dfEe85772cb/a05b012a84b0a369.jpg!q70.dpg",
       "spanSize": 4
     },
     {

@@ -1,11 +1,15 @@
 package com.sunxin.core.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.widget.Toast;
+import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sunxin.core.app.Globle;
 import com.sunxin.core.net.RestClient;
 import com.sunxin.core.net.callback.ISuccess;
+import com.sunxin.core.ui.recycler.DataConverter;
+import com.sunxin.core.ui.recycler.MultipleRecyclerAdapter;
 import com.sunxin.core.util.log.LatteLogger;
 
 /**
@@ -15,11 +19,26 @@ import com.sunxin.core.util.log.LatteLogger;
  */
 public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener {
 
-
     private final SwipeRefreshLayout mRefreshLayout;
 
-    public RefreshHandler(SwipeRefreshLayout refreshLayout) {
+    private final RecyclerView mRecyclerView;
+
+    private final DataConverter mConverter;
+
+    private final PagingBean mPagingBean;
+
+    private MultipleRecyclerAdapter mAdapter = null;
+
+    private RefreshHandler(SwipeRefreshLayout refreshLayout, RecyclerView recyclerView, DataConverter converter, PagingBean pagingBean) {
         mRefreshLayout = refreshLayout;
+        mRecyclerView = recyclerView;
+        mConverter = converter;
+        mPagingBean = pagingBean;
+        mRefreshLayout.setOnRefreshListener(this);
+    }
+
+    public static RefreshHandler create(SwipeRefreshLayout refreshLayout, RecyclerView recyclerView, DataConverter converter) {
+        return new RefreshHandler(refreshLayout, recyclerView, converter, new PagingBean());
     }
 
     private void refresh() {
@@ -36,13 +55,21 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener {
     }
 
     public void firstPage(String url) {
+        mPagingBean.setDelayed(1000);
         RestClient
                 .builder()
                 .url(url)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        Toast.makeText(Globle.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        final JSONObject dadaObj = JSON.parseObject(response);
+                        mPagingBean
+                                .setTotal(dadaObj.getInteger("total"))
+                                .setPageSize(dadaObj.getInteger("page_size"));
+                        // 设置Adapter
+                        mAdapter = MultipleRecyclerAdapter.create(mConverter.setJsonData(response));
+                        mRecyclerView.setAdapter(mAdapter);
+                        mPagingBean.addIndex();
                     }
                 })
                 .build()

@@ -105,7 +105,7 @@ public class MultipleRecyclerAdapter
                 holder.setText(R.id.text_multiple, text);
                 break;
             case ItemType.BANNER:
-                if (mIsInitBanner) {
+                if (!mIsInitBanner) {
                     bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
                     BannerCreator.setDefault(convenientBanner,bannerImages,this);

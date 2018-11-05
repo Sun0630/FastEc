@@ -24,7 +24,7 @@ public class IndexDataConverter extends DataConverter {
         for (int i = 0; i < size; i++) {
             final JSONObject data = dataArray.getJSONObject(i);
             final Integer id = data.getInteger("goodsId");
-            final Integer spanSize = data.getInteger("span_size");
+            final Integer spanSize = data.getInteger("spanSize");
             final String text = data.getString("text");
             final String imageUrl = data.getString("imageUrl");
             final JSONArray banners = data.getJSONArray("banners");
