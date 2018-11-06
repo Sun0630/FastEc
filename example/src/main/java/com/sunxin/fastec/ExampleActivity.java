@@ -16,6 +16,8 @@ import com.sunxin.ec.main.EcBottomDelegate;
 import com.sunxin.ec.sign.ISignListener;
 import com.sunxin.ec.sign.SignInDelegate;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherFinishListener {
 
     @Override
@@ -26,6 +28,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         if (actionBar != null) {
             actionBar.hide();
         }
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override

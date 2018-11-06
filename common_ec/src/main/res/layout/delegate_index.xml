@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -19,13 +22,16 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_index"
         android:layout_width="match_parent"
+        app:layout_behavior="com.sunxin.ec.main.index.TransluncentBehavior"
         android:layout_height="?attr/actionBarSize"
         android:background="@android:color/transparent">
 
         <android.support.v7.widget.LinearLayoutCompat
-            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <com.joanzapata.iconify.widget.IconTextView
                 android:id="@+id/icon_index_scan"
@@ -35,7 +41,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingRight="10dp"
-                android:text="{icon_scan}"
+                android:text="{fa-qrcode}"
                 android:textColor="@android:color/white"
                 android:textSize="23sp"/>
 
