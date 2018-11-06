@@ -16,6 +16,7 @@ import com.sunxin.core.ui.recycler.BaseItemDecoration;
 import com.sunxin.core.ui.refresh.RefreshHandler;
 import com.sunxin.ec.R;
 import com.sunxin.ec.R2;
+import com.sunxin.ec.main.EcBottomDelegate;
 
 import butterknife.BindView;
 
@@ -64,6 +65,11 @@ public class IndexDelegate extends BottomItemDelegate {
         // 添加分割线
         mRvIndex.addItemDecoration(BaseItemDecoration.create(
                 ContextCompat.getColor(getContext(), R.color.item_decoration), 5));
+
+        // 需要拿到父容器才能跳转到一个新界面，不带bootombar
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+
+        mRvIndex.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override

@@ -7,4 +7,8 @@ package com.sunxin.core.delegates;
  */
 public abstract class CommonDelegate extends PermissionCheckerDelegate {
 
+    public <T extends CommonDelegate> T  getParentDelegate(){
+        return (T) getParentFragment();
+    }
+
 }
