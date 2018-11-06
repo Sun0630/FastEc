@@ -2,6 +2,7 @@ package com.sunxin.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.sunxin.core.delegates.bottom.BottomItemDelegate;
+import com.sunxin.core.ui.recycler.BaseItemDecoration;
 import com.sunxin.core.ui.refresh.RefreshHandler;
 import com.sunxin.ec.R;
 import com.sunxin.ec.R2;
@@ -56,10 +58,12 @@ public class IndexDelegate extends BottomItemDelegate {
 
     }
 
-    private void initRecyclerView(){
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),4);
+    private void initRecyclerView() {
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
         mRvIndex.setLayoutManager(gridLayoutManager);
-
+        // 添加分割线
+        mRvIndex.addItemDecoration(BaseItemDecoration.create(
+                ContextCompat.getColor(getContext(), R.color.item_decoration), 5));
     }
 
     @Override
@@ -77,6 +81,6 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = RefreshHandler.create(mSrlIndex,mRvIndex,new IndexDataConverter());
+        mRefreshHandler = RefreshHandler.create(mSrlIndex, mRvIndex, new IndexDataConverter());
     }
 }

@@ -7,7 +7,6 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.orhanobut.logger.Logger;
 import com.sunxin.core.R;
 
 /**
@@ -35,7 +34,6 @@ public class ImageHolder extends Holder<String> {
 
     @Override
     public void updateUI(String data) {
-        Logger.e("banner--" + data);
         Glide.with(mImageView.getContext())
                 .load(data)
                 .apply(BANNER_OPTIONS)
