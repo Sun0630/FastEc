@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.sunxin.core.app.Globle;
+import com.sunxin.core.net.rx.AddCookieInterceptor;
 import com.sunxin.fastec.event.TestEvent;
 import com.sunxin.core.net.interceptors.DebugInterceptor;
 import com.sunxin.ec.database.DatabaseManager;
@@ -22,10 +23,12 @@ public class MainApplication extends Application {
         Globle
                 .init(this)
                 .withApiHost("http://127.0.0.1/")
+                .withWebHost("https://www.baidu.com/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new EcFontModule())
                 .withWxAppId("")
                 .withWxAppSecret("")
+                .withInterceptor(new AddCookieInterceptor())
                 .withInterceptor(new DebugInterceptor("user_profile", R.raw.user_profile))
                 .withInterceptor(new DebugInterceptor("index", R.raw.index))
                 .withInterceptor(new DebugInterceptor("sort_list", R.raw.sort_list))

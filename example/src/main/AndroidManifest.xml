@@ -3,6 +3,7 @@
           package="com.sunxin.fastec">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"

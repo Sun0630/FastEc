@@ -1,6 +1,8 @@
 package com.sunxin.core.delegates.web;
 
+import android.os.Build;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -15,6 +17,16 @@ public class WebViewInitializer {
 
         // 设置可调试
         WebView.setWebContentsDebuggingEnabled(true);
+
+        // cookie 相关 跨域cookie
+        final CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
+            cookieManager.acceptThirdPartyCookies(webView);
+        }
+        cookieManager.setAcceptFileSchemeCookies(true);
+
+
         //不能横向滚动
         webView.setHorizontalScrollBarEnabled(false);
         //不能纵向滚动

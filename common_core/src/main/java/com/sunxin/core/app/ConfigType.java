@@ -15,5 +15,6 @@ public enum ConfigType {
     WX_APP_SECRET,
     ACTIVITY,
     HANDLER,
-    JAVASCRIPT_INTERFACE
+    JAVASCRIPT_INTERFACE,
+    WEB_HOST
 }

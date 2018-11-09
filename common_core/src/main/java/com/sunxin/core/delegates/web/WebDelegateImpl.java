@@ -19,6 +19,12 @@ import com.sunxin.core.delegates.web.route.Router;
  */
 public class WebDelegateImpl extends WebDelegate {
 
+    private IPageLoadListener mPageLoadListener = null;
+
+    public void setPageLoadListener(IPageLoadListener pageLoadListener) {
+        mPageLoadListener = pageLoadListener;
+    }
+
 
     public static WebDelegateImpl create(String url) {
         final Bundle args = new Bundle();
@@ -56,6 +62,7 @@ public class WebDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         WebViewClientImpl webViewClient = new WebViewClientImpl(this);
+       webViewClient.setPageLoadListener(mPageLoadListener);
         return webViewClient;
     }
 

@@ -26,6 +26,7 @@ public class CommonWebInterface {
 
     @JavascriptInterface
     public String event(String params){
+//        Toast.makeText(mDelegate.getContext(), "finishPage", Toast.LENGTH_SHORT).show();
         final String action = JSON.parseObject(params).getString("action");
         final Event event = EventManager.getInstance().createEvent(action);
         if (event != null) {

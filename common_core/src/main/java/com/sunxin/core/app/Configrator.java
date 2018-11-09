@@ -90,6 +90,12 @@ public class Configrator {
         return this;
     }
 
+
+    public final Configrator withWebHost(String webHost) {
+        CONFIGS.put(ConfigType.WEB_HOST.name(), webHost);
+        return this;
+    }
+
     /**
      * 添加字体
      *
