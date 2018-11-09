@@ -7,10 +7,13 @@ import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.sunxin.core.delegates.web.event.Event;
+import com.sunxin.core.delegates.web.event.EventManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import io.reactivex.annotations.NonNull;
 import okhttp3.Interceptor;
 
 /**
@@ -36,7 +39,7 @@ public class Configrator {
 
     private Configrator() {
         CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
-        CONFIGS.put(ConfigType.HANDLER.name(),HANDLER);
+        CONFIGS.put(ConfigType.HANDLER.name(), HANDLER);
     }
 
     final HashMap<String, Object> getConfigs() {
@@ -98,31 +101,43 @@ public class Configrator {
         return this;
     }
 
-    public final Configrator withInterceptor(Interceptor interceptor){
+    public final Configrator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        Globle.getConfigrations().put(ConfigType.INTERCEPTORS.name(),INTERCEPTORS);
+        Globle.getConfigrations().put(ConfigType.INTERCEPTORS.name(), INTERCEPTORS);
         return this;
     }
 
 
-    public final Configrator withInterceptors(ArrayList<Interceptor> interceptors){
+    public final Configrator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
-        Globle.getConfigrations().put(ConfigType.INTERCEPTORS.name(),INTERCEPTORS);
+        Globle.getConfigrations().put(ConfigType.INTERCEPTORS.name(), INTERCEPTORS);
         return this;
     }
 
-    public final Configrator withWxAppId(String appId){
-        Globle.getConfigrations().put(ConfigType.WX_APP_ID.name(),appId);
+    public final Configrator withJavascriptInterface(@NonNull String name) {
+        CONFIGS.put(ConfigType.JAVASCRIPT_INTERFACE.name(), name);
         return this;
     }
 
-    public final Configrator withWxAppSecret(String appSecret){
-        Globle.getConfigrations().put(ConfigType.WX_APP_SECRET.name(),appSecret);
+    public final Configrator withWebEvent(@NonNull String name, @NonNull Event event) {
+        EventManager manager = EventManager.getInstance();
+        manager.addEvent(name, event);
         return this;
     }
 
-    public final Configrator withActivity(Activity activity){
-        Globle.getConfigrations().put(ConfigType.ACTIVITY.name(),activity);
+
+    public final Configrator withWxAppId(String appId) {
+        Globle.getConfigrations().put(ConfigType.WX_APP_ID.name(), appId);
+        return this;
+    }
+
+    public final Configrator withWxAppSecret(String appSecret) {
+        Globle.getConfigrations().put(ConfigType.WX_APP_SECRET.name(), appSecret);
+        return this;
+    }
+
+    public final Configrator withActivity(Activity activity) {
+        Globle.getConfigrations().put(ConfigType.ACTIVITY.name(), activity);
         return this;
     }
 
@@ -140,8 +155,8 @@ public class Configrator {
     public final <T> T getConfigration(Object key) {
         checkConfigration();
         final Object value = CONFIGS.get(key);
-        if (value == null){
-            throw new RuntimeException(key.toString()+"IS NULL");
+        if (value == null) {
+            throw new RuntimeException(key.toString() + "IS NULL");
         }
         return (T) CONFIGS.get(key);
     }

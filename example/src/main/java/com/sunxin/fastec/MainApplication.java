@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.sunxin.core.app.Globle;
+import com.sunxin.fastec.event.TestEvent;
 import com.sunxin.core.net.interceptors.DebugInterceptor;
 import com.sunxin.ec.database.DatabaseManager;
 import com.sunxin.ec.icon.EcFontModule;
@@ -29,6 +30,8 @@ public class MainApplication extends Application {
                 .withInterceptor(new DebugInterceptor("index", R.raw.index))
                 .withInterceptor(new DebugInterceptor("sort_list", R.raw.sort_list))
                 .withInterceptor(new DebugInterceptor("sort_content_list", R.raw.sort_content_data_1))
+                .withJavascriptInterface("common")
+                .withWebEvent("test",new TestEvent())
                 .configure();
 
         // 初始化数据库

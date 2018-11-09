@@ -3,9 +3,10 @@ package com.sunxin.ec.main;
 import android.graphics.Color;
 
 import com.sunxin.core.delegates.bottom.BaseBottomDelegate;
-import com.sunxin.core.delegates.bottom.BottomItemDelegate;
 import com.sunxin.core.delegates.bottom.BaseTabBean;
+import com.sunxin.core.delegates.bottom.BottomItemDelegate;
 import com.sunxin.core.delegates.bottom.ItemBuilder;
+import com.sunxin.ec.main.discover.DiscoverDelegate;
 import com.sunxin.ec.main.index.IndexDelegate;
 import com.sunxin.ec.main.sort.SortDelegate;
 
@@ -33,7 +34,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         final LinkedHashMap<BottomItemDelegate, BaseTabBean> item = new LinkedHashMap<>();
         item.put(new IndexDelegate(), new BaseTabBean("{fa-home}", "首页"));
         item.put(new SortDelegate(), new BaseTabBean("{fa-sort}", "分类"));
-        item.put(new IndexDelegate(), new BaseTabBean("{fa-compass}", "发现"));
+        item.put(new DiscoverDelegate(), new BaseTabBean("{fa-compass}", "发现"));
         item.put(new IndexDelegate(), new BaseTabBean("{fa-shopping-cart}", "购物车"));
         item.put(new IndexDelegate(), new BaseTabBean("{fa-user}", "我的"));
         return itemBuilder.addItems(item).build();
