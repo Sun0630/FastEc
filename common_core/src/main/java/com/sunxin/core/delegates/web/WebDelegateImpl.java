@@ -62,7 +62,7 @@ public class WebDelegateImpl extends WebDelegate {
     @Override
     public WebViewClient initWebViewClient() {
         WebViewClientImpl webViewClient = new WebViewClientImpl(this);
-       webViewClient.setPageLoadListener(mPageLoadListener);
+        webViewClient.setPageLoadListener(mPageLoadListener);
         return webViewClient;
     }
 

@@ -37,13 +37,12 @@ public class DiscoverDelegate extends BottomItemDelegate {
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
-//        final WebDelegateImpl webDelegate = WebDelegateImpl.create("index.html");
 //        String url = "http://s.kaiyuncare.com/html/testclick.html";
 //        String url = "http://s.kaiyuncare.com/question/toStrokeQaPageSuccess?userId=347&questionnaireId=8&headerId=87";
         String url = "index.html";
         final WebDelegateImpl webDelegate = WebDelegateImpl.create(url);
         webDelegate.setTopDelegate(this.getParentDelegate());
-        loadRootFragment(R.id.web_discovery_container,webDelegate);
+        loadRootFragment(R.id.web_discovery_container, webDelegate);
     }
 
     @Override

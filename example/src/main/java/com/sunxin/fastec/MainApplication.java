@@ -33,6 +33,7 @@ public class MainApplication extends Application {
                 .withInterceptor(new DebugInterceptor("index", R.raw.index))
                 .withInterceptor(new DebugInterceptor("sort_list", R.raw.sort_list))
                 .withInterceptor(new DebugInterceptor("sort_content_list", R.raw.sort_content_data_1))
+                .withInterceptor(new DebugInterceptor("shop_cart_list", R.raw.shop_cart))
                 .withJavascriptInterface("common")
                 .withWebEvent("test",new TestEvent())
                 .configure();
