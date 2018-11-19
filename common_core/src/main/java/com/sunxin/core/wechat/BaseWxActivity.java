@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.tencent.mm.opensdk.modelbase.BaseReq;
-import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 
 /**
@@ -30,13 +28,4 @@ public abstract class BaseWxActivity extends AppCompatActivity implements IWXAPI
         WeChat.getInstance().getIWXAPI().handleIntent(getIntent(),this);
     }
 
-    @Override
-    public void onReq(BaseReq req) {
-
-    }
-
-    @Override
-    public void onResp(BaseResp resp) {
-
-    }
 }

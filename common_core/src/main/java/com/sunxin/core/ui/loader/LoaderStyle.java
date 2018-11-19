@@ -5,7 +5,7 @@ package com.sunxin.core.ui.loader;
  * @date 2018/10/26 6:08 PM
  * @desc 动画效果枚举
  */
-public enum  LoaderStyle {
+public enum LoaderStyle {
     BallPulseIndicator,
     BallGridPulseIndicator,
     BallClipRotateIndicator,

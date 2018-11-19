@@ -11,6 +11,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.sunxin.core.app.Globle;
+import com.sunxin.core.net.RestClient;
+import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.ui.recycler.MultipleFields;
 import com.sunxin.core.ui.recycler.MultipleItemEntity;
 import com.sunxin.core.ui.recycler.MultipleRecyclerAdapter;
@@ -28,10 +30,19 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     private boolean mIsSelectedAll = false;
 
+    private OnCartItemClickListener mItemClickListener;
+
+    private double mTotalPrice = 0.00;
+
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
             .dontAnimate();
+
+
+    public void setItemClickListener(OnCartItemClickListener itemClickListener) {
+        mItemClickListener = itemClickListener;
+    }
 
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
@@ -41,9 +52,20 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
      */
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
+        // 初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double mTotal = count * price;
+            mTotalPrice += mTotal;
+
+        }
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
     }
 
+    public double getTotalPrice() {
+        return mTotalPrice;
+    }
 
     public void setSelectedAll(boolean selectedAll) {
         mIsSelectedAll = selectedAll;
@@ -81,7 +103,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         .apply(OPTIONS)
                         .into(imgThumb);
 
-                entity.setField(ShopCartItemFields.IS_SELECTED,mIsSelectedAll);
+                entity.setField(ShopCartItemFields.IS_SELECTED, mIsSelectedAll);
 
                 final boolean isSelect = entity.getField(ShopCartItemFields.IS_SELECTED);
 
@@ -104,6 +126,65 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                             iconIsSelected.setTextColor(ContextCompat.getColor(Globle.getApplicationContext(), R.color.app_main));
                             entity.setField(ShopCartItemFields.IS_SELECTED, true);
                         }
+                    }
+                });
+
+                // 增加和减少
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        if (Integer.parseInt(tvCount.getText().toString()) > 1) {
+                            RestClient
+                                    .builder()
+                                    .url("shop_cart_list")
+                                    .params("count", currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            final String count = tvCount.getText().toString();
+                                            int countNum = Integer.parseInt(count);
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+
+                                            if (mItemClickListener != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemPrice = price * countNum;
+                                                mItemClickListener.onCartItemClick(itemPrice);
+                                            }
+
+                                        }
+                                    })
+                                    .build()
+                                    .post();
+                        }
+                    }
+                });
+
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        RestClient
+                                .builder()
+                                .url("shop_cart_list")
+                                .params("count", currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        final String count = tvCount.getText().toString();
+                                        int countNum = Integer.parseInt(count);
+                                        countNum++;
+                                        tvCount.setText(String.valueOf(countNum));
+                                        if (mItemClickListener != null) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemPrice = price * countNum;
+                                            mItemClickListener.onCartItemClick(itemPrice);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .post();
                     }
                 });
 

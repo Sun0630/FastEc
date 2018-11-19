@@ -20,6 +20,7 @@ import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.ui.recycler.MultipleItemEntity;
 import com.sunxin.ec.R;
 import com.sunxin.ec.R2;
+import com.sunxin.ec.pay.FastPay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  * @date 2018/11/12 2:05 PM
  * @desc 购物车
  */
-public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
+public class ShopCartDelegate extends BottomItemDelegate implements ISuccess, OnCartItemClickListener {
 
     @BindView(R2.id.rv_shop_cart)
     RecyclerView mRvShopCart;
@@ -40,9 +41,12 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     IconTextView mSelectAll;
     @BindView(R2.id.view_stub_empty)
     ViewStubCompat mStubEmpty;
+    @BindView(R2.id.tv_shop_cart_total_price)
+    AppCompatTextView mTvTotalPrice;
 
 
     private ShopCartAdapter mAdapter;
+    private double mTotalPrice = 0.00;
 
     /**
      * 购物车数量标记
@@ -126,6 +130,15 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
         checkItemCount();
     }
 
+    @OnClick(R2.id.tv_shop_cart_pay)
+    void onClickPay(){
+        //1. 创建订单
+        FastPay.create(this).beginPayDialog();
+    }
+
+    private void createOrder(){
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -140,6 +153,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mSelectAll.setTag(0);
+
     }
 
     @Override
@@ -160,9 +174,18 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
                 .setJsonData(response).convert();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(_mActivity);
         mAdapter = new ShopCartAdapter(data);
+        mAdapter.setItemClickListener(this);
+        mTotalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText("¥ "+String.valueOf(mTotalPrice));
         mAdapter.closeLoadAnimation();
         mRvShopCart.setLayoutManager(layoutManager);
         mRvShopCart.setAdapter(mAdapter);
         checkItemCount();
+    }
+
+    @Override
+    public void onCartItemClick(double itemTotalPrice) {
+        final double totalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText("¥ "+String.valueOf(totalPrice));
     }
 }

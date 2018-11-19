@@ -6,7 +6,6 @@ import com.sunxin.core.net.callback.IError;
 import com.sunxin.core.net.callback.IFailer;
 import com.sunxin.core.net.callback.ISuccess;
 import com.sunxin.core.util.log.LatteLogger;
-import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 
@@ -26,16 +25,6 @@ public abstract class BaseWxEntryActivity extends BaseWxActivity {
     protected abstract void onSignInSuccess(String userInfo);
 
 
-    /**
-     * 微信发送到第三方应用后的回调
-     *
-     * @param req
-     */
-    @Override
-    public void onReq(BaseReq req) {
-        super.onReq(req);
-
-    }
 
     /**
      * 第三方应用发送请求到微信后的回调

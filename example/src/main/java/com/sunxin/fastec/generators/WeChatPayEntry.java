@@ -1,7 +1,7 @@
 package com.sunxin.fastec.generators;
 
 import com.sunxin.annotations.PayEntryGenerator;
-import com.sunxin.core.wechat.templates.AppRegisterTemplate;
+import com.sunxin.core.wechat.templates.WXPayEntryTemplate;
 
 /**
  * @author sunxin
@@ -10,6 +10,6 @@ import com.sunxin.core.wechat.templates.AppRegisterTemplate;
  */
 @PayEntryGenerator(
         packageName = "com.sunxin.fastec",
-        payEntryTemplate = AppRegisterTemplate.class)
+        payEntryTemplate = WXPayEntryTemplate.class)
 public class WeChatPayEntry {
 }

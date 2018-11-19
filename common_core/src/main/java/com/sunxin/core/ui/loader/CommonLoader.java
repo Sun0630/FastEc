@@ -30,7 +30,6 @@ public class CommonLoader {
         final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
 
         AVLoadingIndicatorView avLoadingIndicatorView = LoaderCreator.create(type, context);
-
         dialog.setContentView(avLoadingIndicatorView);
 
         int deviceWidth = DimenUtil.getScreenWidth();
@@ -42,8 +41,10 @@ public class CommonLoader {
             WindowManager.LayoutParams layoutParams = dialogWindow.getAttributes();
             layoutParams.width = deviceWidth / LOADER_SIZE_SCALE;
             layoutParams.height = deviceHeight / LOADER_SIZE_SCALE;
-            layoutParams.height = deviceHeight / LOADER_OFFSET_SCALE;
+            layoutParams.height = layoutParams.height + deviceHeight / LOADER_OFFSET_SCALE;
             layoutParams.gravity = Gravity.CENTER;
+            layoutParams.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+            dialogWindow.setAttributes(layoutParams);
         }
 
         //存放到一个集合中
@@ -54,11 +55,12 @@ public class CommonLoader {
 
     /**
      * 传入一个枚举类型
+     *
      * @param context
      * @param styleEnum
      */
-    public static void showLoading(Context context,Enum<LoaderStyle> styleEnum){
-        showLoading(context,styleEnum.name());
+    public static void showLoading(Context context, Enum<LoaderStyle> styleEnum) {
+        showLoading(context, styleEnum.name());
     }
 
 

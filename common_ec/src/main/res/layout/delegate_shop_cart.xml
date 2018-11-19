@@ -134,17 +134,19 @@
                 android:textColor="@android:color/darker_gray"/>
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_shop_cart_total_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:gravity="center|left"
-                android:text="¥1000.0"
+                android:text="¥"
                 android:textColor="@color/app_main"
                 android:textSize="20sp"/>
 
         </android.support.v7.widget.LinearLayoutCompat>
 
-        <TextView
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_shop_cart_pay"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

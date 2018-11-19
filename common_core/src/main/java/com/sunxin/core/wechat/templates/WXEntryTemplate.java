@@ -2,6 +2,7 @@ package com.sunxin.core.wechat.templates;
 
 import com.sunxin.core.wechat.BaseWxEntryActivity;
 import com.sunxin.core.wechat.WeChat;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
 
 /**
  * @author sunxin
@@ -25,5 +26,10 @@ public class WXEntryTemplate extends BaseWxEntryActivity {
                 .getInstance()
                 .getSignInCallback()
                 .onSignInSuccess(userInfo);
+    }
+
+    @Override
+    public void onReq(BaseReq req) {
+
     }
 }
